@@ -1,0 +1,13 @@
+server:
+  port: 8390
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5858/java9MovieApp
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
