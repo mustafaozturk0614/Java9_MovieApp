@@ -1,4 +1,4 @@
-package com.bilgeadam.controller;
+package com.bilgeadam.controller.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

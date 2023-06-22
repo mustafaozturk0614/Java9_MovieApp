@@ -1,7 +1,8 @@
 package com.bilgeadam.service;
 
 import com.bilgeadam.repository.IGenreRepository;
-import com.bilgeadam.repository.entity.Genre;
+import com.bilgeadam.repository.IMovieRepository;
+import com.bilgeadam.repository.entity.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,31 +11,27 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class GenreService implements  IServiceCrud<Genre> {
-   private final IGenreRepository genreRepository;
+public class MovieService implements IServiceCrud<Movie>{
+   private final IMovieRepository movieRepository;
 
-
-   public String deneme(){
-      return  "deneme";
-   }
 
    @Override
-   public Genre save(Genre genre) {
+   public Movie save(Movie movie) {
       return null;
    }
 
    @Override
-   public Iterable<Genre> saveAll(Iterable<Genre> t) {
+   public Iterable<Movie> saveAll(Iterable<Movie> t) {
       return null;
    }
 
    @Override
-   public Genre update(Genre genre) {
+   public Movie update(Movie movie) {
       return null;
    }
 
    @Override
-   public void delete(Genre genre) {
+   public void delete(Movie movie) {
 
    }
 
@@ -44,12 +41,12 @@ public class GenreService implements  IServiceCrud<Genre> {
    }
 
    @Override
-   public List<Genre> findAll() {
+   public List<Movie> findAll() {
       return null;
    }
 
    @Override
-   public Optional<Genre> findById(long id) {
+   public Optional<Movie> findById(long id) {
       return Optional.empty();
    }
 }

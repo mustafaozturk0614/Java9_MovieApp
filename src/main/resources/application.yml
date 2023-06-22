@@ -9,5 +9,5 @@ spring:
     url: jdbc:postgresql://localhost:5858/java9MovieApp
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
