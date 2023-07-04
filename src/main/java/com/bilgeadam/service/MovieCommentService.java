@@ -6,6 +6,7 @@ import com.bilgeadam.repository.entity.MovieComment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +49,12 @@ public class MovieCommentService implements IServiceCrud<MovieComment> {
    @Override
    public Optional<MovieComment> findById(long id) {
       return Optional.empty();
+   }
+
+
+  public List<MovieComment> findAllByUserIdAndDateBetween(Long userId, String date1, String date2){
+      LocalDate start=LocalDate.parse(date1);
+      LocalDate end=LocalDate.parse(date2);
+      return movieCommentRepository.findAllByUserIdAndDateBetween(userId,start,end);
    }
 }
