@@ -23,7 +23,7 @@ public class Movie {
     private String image;
     private String country;
     private Double rating;
-    @Lob
+
     private Double summary;
     private LocalDate premired;
     private String url;

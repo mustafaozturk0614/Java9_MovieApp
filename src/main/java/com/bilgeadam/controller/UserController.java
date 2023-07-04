@@ -8,9 +8,9 @@ import com.bilgeadam.service.MovieService;
 import com.bilgeadam.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -53,4 +53,53 @@ public class UserController {
         return  ResponseEntity.ok(user);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login2(@RequestBody LoginRequestDto dto){
+        LoginResponseDto user=null;
+        try {
+            user =userService.login(dto);
+        }catch (Exception e){
+            return  ResponseEntity.badRequest().body("Hata olustu:"+e.getMessage());
+        }
+        return  ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/containsname")
+    public  ResponseEntity <?> findAllByNameContainingIgnoreCase(String value){
+            try {
+                return ResponseEntity.ok(userService.findAllByNameContainingIgnoreCase(value));
+            }catch (Exception e){
+                return  ResponseEntity.badRequest().body("Hata olustu:"+e.getMessage());
+            }
+    }
+
+    @GetMapping("/findall")
+    public ResponseEntity<List<User>> findAll(){
+        return  ResponseEntity.ok(userService.findAll());
+    }
+     @GetMapping("/orderbyname")
+    public ResponseEntity <List<User>> findAllByOrderByName(){
+        return ResponseEntity.ok( userService.findAllByOrderByName());
+    }
+    @GetMapping("/containsemail")
+    public ResponseEntity <List<User>> findAllByEmailContainingIgnoreCase(String value){
+        return ResponseEntity.ok( userService.findAllByEmailContainingIgnoreCase(value));
+    }
+    @GetMapping("/endwithemail")
+    public ResponseEntity <List<User>> findAllByEmailEndingWith(String value){
+        return ResponseEntity.ok( userService.findAllByEmailEndingWith(value));
+    }
+
+    @GetMapping("/passwordcontrol")
+    public ResponseEntity <List<User>> passwordLongerThan(int value){
+        return ResponseEntity.ok( userService.passwordLongerThan(value));
+    }
+    @GetMapping("/passwordcontrol2")
+    public ResponseEntity <List<User>> passwordLongerThan2(int value){
+        return ResponseEntity.ok( userService.passwordLongerThan2(value));
+    }
+    @GetMapping("/passwordcontrol3")
+    public ResponseEntity <List<User>> passwordLongerThan3(int value){
+        return ResponseEntity.ok( userService.passwordLongerThan3(value));
+    }
 }
