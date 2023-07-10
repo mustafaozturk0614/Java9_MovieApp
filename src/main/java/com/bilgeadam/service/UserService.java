@@ -3,6 +3,8 @@ package com.bilgeadam.service;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.RegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
+import com.bilgeadam.excepiton.ErrorType;
+import com.bilgeadam.excepiton.MovieAppException;
 import com.bilgeadam.mapper.IUserMapper;
 import com.bilgeadam.repository.IMovieRepository;
 import com.bilgeadam.repository.IUserRepository;
@@ -74,10 +76,10 @@ public class UserService  implements  IServiceCrud<User>{
 
    }
 
-   public LoginResponseDto login(LoginRequestDto dto) {
+   public LoginResponseDto login(LoginRequestDto dto)  {
      Optional<User> user =userRepository.findOptionalByEmailAndPassword(dto.getEmail(), dto.getPassword());
      if (user.isEmpty()){
-        throw new  RuntimeException("Kullancı adı veya şifre hatalı");
+        throw new MovieAppException(ErrorType.LOGIN_ERROR);
      }
   /*    return  LoginResponseDto.builder().name(user.get().getName())
               .surName(user.get().getSurName())

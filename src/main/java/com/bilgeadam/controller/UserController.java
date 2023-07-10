@@ -3,6 +3,7 @@ package com.bilgeadam.controller;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.RegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
+import com.bilgeadam.excepiton.MovieAppException;
 import com.bilgeadam.repository.entity.User;
 import com.bilgeadam.service.MovieService;
 import com.bilgeadam.service.UserService;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,10 @@ public class UserController {
     public  ResponseEntity<User> register(RegisterRequestDto dto){
         return  ResponseEntity.ok(userService.register(dto));
     }
-
+    @PostMapping("/register")
+    public  ResponseEntity<User> register2(@Valid @RequestBody  RegisterRequestDto dto){
+        return  ResponseEntity.ok(userService.register(dto));
+    }
     // login metodu yazalım
     // (dışarıdan bir dto alacak daha sonra o dto ile databasede kullanıcı arayacağız
     // eğer kullancı bulunmussa  kullancııyı geri donelim
@@ -43,13 +48,11 @@ public class UserController {
     // )
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(LoginRequestDto dto){
+    public ResponseEntity<LoginResponseDto> login(LoginRequestDto dto)  {
         LoginResponseDto user=null;
-        try {
+
            user =userService.login(dto);
-        }catch (Exception e){
-            return  ResponseEntity.badRequest().body("Hata olustu:"+e.getMessage());
-        }
+
         return  ResponseEntity.ok(user);
     }
 
